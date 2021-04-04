@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfica | Circuíto</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+
+    <header id="headerf">
+        <h1 class="h1f"><a class="ancla-navf ancla-h1f" href="index.php">Monitoreo Ultrasónico - Pro</a></h1>
+        <nav class="links">
+            <ul class="ulf">
+                <li class="lif"><a class="ancla-navf" href="index.html">INICIO</a></li>
+                <li class="lif"><a class="ancla-navf" href="objetivo.html">OBJETIVO</a></li>
+                <li class="lif"><a class="ancla-navf" href="registros.php">REGISTROS</a></li>
+                <li class="lif"><a class="ancla-navf active" href="grafica.html">GRÁFICA</a></li>
+                <li class="lif"><a class="ancla-navf" href="circuitos.html">CIRCUITO</a></li>
+            </ul>
+        </nav>
+        <nav class="mainf">
+            <ul class="ulf">
+                <li class="lif menu">
+                    <a class="desaparece ancla-navf fa-bars" href="#menu">MENÚ</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container mt-5">
+        <div class="pt-5 row align-items-center justify-content-center pt-3">
+            <div class="col">
+                <canvas id="myCanvas"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/socket_grafica.js"></script>
+    <script src="js/grafica.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
