@@ -1,70 +1,46 @@
 <?php
+    include_once 'conexionBD.php';
+    $objeto = new Conexion();
+    $conexion = $objeto->Conectar();
 
-    // include_once 'conexionBD.php';
-    // $objeto = new Conexion();
-    // $conexion = $objeto -> Conectar();
-    
-    
-
-    
-    //necesario para recibir parámetros con Axios
     $_POST = json_decode(file_get_contents("php://input"), true);
 
-    $opcion = 1;
-    switch ($opcion) {
-        // case 1:
-        //     break;
+    function permisos() {  
+    if (isset($_SERVER['HTTP_ORIGIN'])){
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Origin, Authorization, X-Requested-With, Content-Type, Accept");
+        header('Access-Control-Allow-Credentials: true');      
+    }  
+    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))          
+            header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+            header("Access-Control-Allow-Headers: Origin, Authorization, X-Requested-With, Content-Type, Accept");
+        exit(0);
+    }
+    }
+    permisos();
 
-        // case 2:
-        //     break;
 
+    $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
+    $id = (isset($_POST['id'])) ? $_POST['id'] : '';
+
+
+    switch($opcion){
         case 1:
-            $servidor="localhost";
-            $usuario="root";
-            $clave="";
-            $BaseDeDatos="proyecto_iot";
-
-            $conexion=mysqli_connect($servidor,$usuario, $clave, $BaseDeDatos);
-            mysqli_set_charset($conexion, "utf8");
-
-            if(mysqli_connect_errno()){
-            
-                echo "<script> alert('.:: ERROR DE CONEXIÓN ::.') </script>";
-            
-                exit();
-            }
-            $registros = mysqli_query($conexion, "SELECT * FROM datos");
-            break;
-                
+            $consulta = "SELECT id, distancia, fecha, hora FROM datos";
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();
+            $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            break;       
+        case 2:
+            $consulta = "DELETE FROM datos WHERE id='$id' ";		
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();                           
+            break;              
         
-        default:
-            echo 'error';
-            break;
     }
 
-    // function EliminarRegistros(){
-    //     if(isset($_POST['id'])){
-    
-    //         $id_distancia = $_POST['id'];
-    //         $delete = mysqli_query($conexion, "DELETE FROM datos WHERE id = '$id_distancia'");
-    
-    //     }
-    // }
-
-    // function EliminacionMultiple(){
-    //     if (isset($_POST['eliminar-mult'])) {
-
-    //         foreach($_POST['eliminar-mult'] as $id_borrar){
-    
-    //             $query_delete_mult = mysqli_query($conexion,"DELETE FROM datos WHERE id = '$id_borrar'");            
-                                        
-    //         }
-                        
-    //     }
-    // }
-
-    
-    
-    
-
-?>
+    print json_encode($data, JSON_UNESCAPED_UNICODE);
+    $conexion = NULL;

@@ -1,21 +1,17 @@
 <?php
-
-    $servidor="localhost";
-    $usuario="root";
-    $clave="";
-    $BaseDeDatos="proyecto_iot";
-
-    $conexion=mysqli_connect($servidor,$usuario, $clave, $BaseDeDatos);
-
-    mysqli_set_charset($conexion, "utf8");
-
-    if(mysqli_connect_errno()){
-
-        echo "<script> alert('.:: ERROR DE CONEXIÓN ::.') </script>";
-
-        exit();
+    class Conexion{
+        public static function Conectar(){
+            define('servidor', 'localhost');
+            define('nombre_bd', 'proyecto_iot');
+            define('usuario', 'root');
+            define('password', '');	
+            $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');			
+            try{
+                $conexion = new PDO("mysql:host=".servidor."; dbname=".nombre_bd, usuario, password, $opciones);
+                return $conexion;                    
+            }catch (Exception $e){
+                die("El error de Conexión es: ". $e->getMessage());
+            }
+        }
     }
-
-    
-    
 ?>

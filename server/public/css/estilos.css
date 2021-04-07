@@ -751,6 +751,10 @@ body.is-menu-visible #menu {
 
 /* registros */
 
+.body_registros {
+  overflow-y: hidden;
+}
+
 th {
   background: #865858;
   color: #f5deb3;

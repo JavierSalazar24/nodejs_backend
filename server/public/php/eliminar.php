@@ -1,15 +1,8 @@
 <?php
     
     include_once "conexionBD.php";
-    
-    if(isset($_REQUEST['id_distancia'])){
-    
-        $id_distancia = $_REQUEST['id_distancia'];
-        $delete = mysqli_query($conexion, "DELETE FROM datos WHERE id = '$id_distancia'");
-
-        header('Location: ../registros.php');
-
-    }
+    $objeto = new Conexion();
+    $conexion = $objeto->Conectar();
     
     if (isset($_POST['eliminar-mult'])) {
 
@@ -29,7 +22,9 @@
 
         }
     }elseif (empty($_POST['eliminar-mult'])) {
+
         echo json_encode('vacio');
+        
     }
 
 

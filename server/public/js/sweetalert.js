@@ -65,47 +65,49 @@ function MostrarAlertaImgMaterial() {
   });
 }
 
-formulario.addEventListener("submit", function (e) {
-  e.preventDefault();
+function AlertaConfirmarEliminacionMultiple() {
   var formulario = document.getElementById("formulario");
-  var datos = new FormData(formulario);
-  Swal.fire({
-    title: "¿Estás seguro que deseas eliminar los registros?",
-    text: "No podras recuperarlos.",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    confirmButtonText: "Aceptar",
-    cancelButtonText: "Cancelar",
-    cancelButtonColor: "#d33",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      fetch("php/eliminar.php", {
-        method: "POST",
-        body: datos,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data == "error") {
-            Swal.fire("Error!", "Registros no eliminados", "error");
-          } else if (data == "vacio") {
-            Swal.fire("Error!", "No seleccionó ningun registro", "warning");
-          } else {
-            Swal.fire(
-              "Eliminados!",
-              "Registros eliminados exitosamente",
-              "success"
-            ).then((result) => {
-              if (result.isConfirmed) {
-                // setTimeout(cargaAlertaErrorDatos, 1000);
-                // function cargaAlertaErrorDatos() {
-                location.href = "registros.php";
-                // }
-              }
-            });
-          }
-        });
-    }
+  formulario.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var datos = new FormData(formulario);
+    Swal.fire({
+      title: "¿Estás seguro que deseas eliminar los registros?",
+      text: "No podras recuperarlos.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch("http://sensor_nodejs.com/server/public/php/eliminar.php", {
+          method: "POST",
+          body: datos,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data == "error") {
+              Swal.fire("Error!", "Registros no eliminados", "error");
+            } else if (data == "vacio") {
+              Swal.fire("Error!", "No seleccionó ningun registro", "warning");
+            } else {
+              Swal.fire(
+                "Eliminados!",
+                "Registros eliminados exitosamente",
+                "success"
+              ).then((result) => {
+                if (result.isConfirmed) {
+                  // setTimeout(cargaAlertaErrorDatos, 1000);
+                  // function cargaAlertaErrorDatos() {
+                  location.href = "registros.html";
+                  // }
+                }
+              });
+            }
+          });
+      }
+    });
   });
-});
+}

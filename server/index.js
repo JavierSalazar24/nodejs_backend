@@ -15,7 +15,7 @@ const con = mysql.createConnection({
 
 const app = express();
 const server = http.createServer(app);
-const puerto = process.env.PORT;
+const puerto = 3900 || process.env.PORT;
 const io = socketIO(server);
 
 app.use(express.static(__dirname + "/public"));
