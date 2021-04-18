@@ -10,24 +10,8 @@ socket.on("arduino:data", function (dataSerial) {
   let minuto = fecha.getMinutes(); //guardar los minutos exactos
   let segundo = fecha.getSeconds(); //guardar los segundos exactos
 
-  // if (dia.length == 1) {
-  //   dia = `0${dia}`;
-  // }
-  // if (mes.length == 1) {
-  //   mes = `0${mes}`;
-  // }
-  // if (hora.length == 1) {
-  //   hora = `0${hora}`;
-  // }
-  // if (minuto.length == 1) {
-  //   minuto = `0${minuto}`;
-  // }
-  // if (segundo.length == 1) {
-  //   segundo = `0${segundo}`;
-  // }
-
   myChart.data.labels.push(
-    `${dia}/${mes}/${anio} - ${hora}:${minuto}:${segundo}`
+    `${dia}/${mes}/${anio} - ${hora}:${minuto}:${segundo} hrs`
   );
   myChart.data.datasets.forEach((dataset) => {
     dataset.data.push(dataSerial.value);

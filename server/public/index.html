@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.jpg" />
+    <!-- Estilos -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilos.css">
-    <title>Distancia | Circuíto</title>
+    <title>Distancia | Circuito</title>
 </head>
 
 <body class="body_index">
     <header id="headerf">
-        <h1 class="h1f"><a class="ancla-navf ancla-h1f" href="index.php">Monitoreo Ultrasónico - Pro</a></h1>
+        <h1 class="h1f"><a class="ancla-navf ancla-h1f active" href="index.html">Monitoreo Ultrasónico - Pro</a></h1>
         <nav class="links">
             <ul class="ulf">
                 <li class="lif"><a class="ancla-navf active" href="index.html">INICIO</a></li>
@@ -31,6 +33,42 @@
             </ul>
         </nav>
     </header>
+
+    <!-- Menu -->
+    <section class="sectionf" id="menu">
+
+        <!-- Links -->
+        <section class="sectionf text-center">
+            <ul class="ulf links">
+                <li class="lif">
+                    <a class="ancla-navf" href="index.html">
+                        <h3 class="h3f active">INICIO</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="objetivo.html">
+                        <h3 class="h3f">OBJETIVO</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="registros.html">
+                        <h3 class="h3f">REGISTROS</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="grafica.html">
+                        <h3 class="h3f">GRÁFICA</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="circuitos.html">
+                        <h3 class="h3f">CIRCUITO</h3>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </section>
+
     <div class="container">
         <h1 class="text-center mb-4 titulo_datos">Datos en Tiempo Real</h1>
         <div class="row justify-content-center align-items-center pt-5">
@@ -49,6 +87,12 @@
         </div>
     </div>
 
+    <!-- Script NavBar -->
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/skel.min.js"></script>
+    <script src="assets/util.js"></script>
+    <script src="assets/main.js"></script>
+    <!-- Script bootstrap -->
     <script src="https://kit.fontawesome.com/56b0f801ce.js" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/socket_datos.js"></script>

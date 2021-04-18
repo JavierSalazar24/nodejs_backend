@@ -13,5 +13,5 @@ socket.on("arduino:data", function (data) {
   //mostrar la hora exacta
   document.getElementById(
     "horario"
-  ).innerHTML = `${hora}:${minutos}:${segundos}`;
+  ).innerHTML = `${hora}:${minutos}:${segundos} hrs`;
 });

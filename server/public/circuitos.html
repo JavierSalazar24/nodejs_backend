@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.jpg" />
+    <!-- Estilos -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilos.css">
@@ -13,7 +15,7 @@
 
 <body class="body_circuito">
     <header id="headerf">
-        <h1 class="h1f"><a class="ancla-navf ancla-h1f" href="index.php">Monitoreo Ultrasónico - Pro</a></h1>
+        <h1 class="h1f"><a class="ancla-navf ancla-h1f" href="index.html">Monitoreo Ultrasónico - Pro</a></h1>
         <nav class="links">
             <ul class="ulf">
                 <li class="lif"><a class="ancla-navf" href="index.html">INICIO</a></li>
@@ -30,33 +32,66 @@
                 </li>
             </ul>
         </nav>
-        <nav class="mainf">
-            <ul class="ulf">
-                <li class="lif menu">
-                    <a class="desaparece ancla-navf fa-bars" href="#menu">MENÚ</a>
+    </header>
+
+    <!-- Menu -->
+    <section class="sectionf" id="menu">
+
+        <!-- Links -->
+        <section class="sectionf text-center">
+            <ul class="ulf links">
+                <li class="lif">
+                    <a class="ancla-navf" href="index.html">
+                        <h3 class="h3f">INICIO</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="objetivo.html">
+                        <h3 class="h3f">OBJETIVO</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="registros.html">
+                        <h3 class="h3f">REGISTROS</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="grafica.html">
+                        <h3 class="h3f">GRÁFICA</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="circuitos.html">
+                        <h3 class="h3f active">CIRCUITO</h3>
+                    </a>
                 </li>
             </ul>
-        </nav>
-    </header>
+        </section>
+    </section>
+
     <div class="container mb-5">
         <h1 class="text-center mb-5">Circuito y materiales</h1>
-        <div class="row justify-content-center pt-3">
-            <div class="col-6 col-md-6 mb-5">
+        <div class="row justify-content-center align-items-center pt-3">
+            <div class="col-12 col-md-6 mb-5">
                 <div class=" card">
+                    <img src="img/material.jpg" class="card-img-top" alt="...">
                     <button onclick="MostrarAlertaImgMaterial()" class="icono2"><i
                             class="fas fa-search-plus"></i></button>
-                    <img src="https://as.com/meristation/imagenes/2021/01/15/noticias/1610700906_830247_1610701057_noticia_normal_recorte1.jpg"
-                        class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of
-                            the card's content.</p>
+                        <h5 class="card-title">Material del circuito</h5>
+                        <p class="card-text">
+                            Se muestra el material necesario para poder crear el circuito que se muestra.
+                        </p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
+                        <li class="list-group-item">1 Arduino UNO</li>
+                        <li class="list-group-item">1 Cable USB</li>
+                        <li class="list-group-item">1 Protoboard</li>
+                        <li class="list-group-item">1 Sensor ultrasónico HC-SRO4</li>
+                        <li class="list-group-item">1 Led</li>
+                        <li class="list-group-item">1 Buzzer</li>
+                        <li class="list-group-item">4 puentes macho/macho</li>
+                        <li class="list-group-item">4 puentes hembra/macho</li>
                     </ul>
                 </div>
             </div>
@@ -64,8 +99,7 @@
                 <div class="card mb-5">
                     <button onclick="MostrarAlertaImgCircuito()" class="icono"><i
                             class="fas fa-search-plus"></i></button>
-                    <img src="https://as.com/meristation/imagenes/2021/01/15/noticias/1610700906_830247_1610701057_noticia_normal_recorte1.jpg"
-                        class="card-img-top" alt="...">
+                    <img src="img/armado.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Sensor ultrasónico pro.</h5>
                         <p class="card-text">Este es el cuircuito utilizado en este proyecto para poder guardar los
@@ -77,6 +111,11 @@
         </div>
     </div>
 
+    <!-- Script NavBar -->
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/skel.min.js"></script>
+    <script src="assets/util.js"></script>
+    <script src="assets/main.js"></script>
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

@@ -34,8 +34,7 @@ function AlertaErrorDatos() {
 }
 function MostrarAlertaImgCircuito() {
   Swal.fire({
-    imageUrl:
-      "https://as.com/meristation/imagenes/2021/01/15/noticias/1610700906_830247_1610701057_noticia_normal_recorte1.jpg",
+    imageUrl: "img/armado.jpg",
     imageWidth: 440,
     imageHeight: 330,
     imageAlt: "Custom image",
@@ -50,8 +49,7 @@ function MostrarAlertaImgCircuito() {
 }
 function MostrarAlertaImgMaterial() {
   Swal.fire({
-    imageUrl:
-      "https://as.com/meristation/imagenes/2021/01/15/noticias/1610700906_830247_1610701057_noticia_normal_recorte1.jpg",
+    imageUrl: "img/material.jpg",
     imageWidth: 420,
     imageHeight: 330,
     imageAlt: "Custom image",
@@ -64,12 +62,12 @@ function MostrarAlertaImgMaterial() {
     // },
   });
 }
-
 function AlertaConfirmarEliminacionMultiple() {
-  var formulario = document.getElementById("formulario");
   formulario.addEventListener("submit", function (e) {
     e.preventDefault();
+    var formulario = document.getElementById("formulario");
     var datos = new FormData(formulario);
+    console.log(datos.get("eliminar[]"));
     Swal.fire({
       title: "¿Estás seguro que deseas eliminar los registros?",
       text: "No podras recuperarlos.",
@@ -81,7 +79,7 @@ function AlertaConfirmarEliminacionMultiple() {
       cancelButtonColor: "#d33",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("http://sensor_nodejs.com/server/public/php/eliminar.php", {
+        fetch("http://localhost/sensor_nodejs/server/public/php/eliminar.php", {
           method: "POST",
           body: datos,
         })
@@ -91,7 +89,7 @@ function AlertaConfirmarEliminacionMultiple() {
             if (data == "error") {
               Swal.fire("Error!", "Registros no eliminados", "error");
             } else if (data == "vacio") {
-              Swal.fire("Error!", "No seleccionó ningun registro", "warning");
+              Swal.fire("Error!", "No seleccionó ningun registro", "error");
             } else {
               Swal.fire(
                 "Eliminados!",
@@ -99,10 +97,7 @@ function AlertaConfirmarEliminacionMultiple() {
                 "success"
               ).then((result) => {
                 if (result.isConfirmed) {
-                  // setTimeout(cargaAlertaErrorDatos, 1000);
-                  // function cargaAlertaErrorDatos() {
                   location.href = "registros.html";
-                  // }
                 }
               });
             }

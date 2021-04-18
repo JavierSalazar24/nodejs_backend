@@ -1,8 +1,13 @@
 <?php
     error_reporting(0);
     include "php/conexionBD.php";
+    $objeto = new Conexion();
+    $conexion = $objeto->Conectar();
 
-    $registros = mysqli_query($conexion, "SELECT * FROM datos");    
+    $consulta = "SELECT id, distancia, fecha, hora FROM datos";
+    $resultado = $conexion->prepare($consulta);
+    $resultado->execute();
+    $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
 ?>  
 
@@ -12,20 +17,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.jpg" />
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilos.css">
-    <title>Registros | Circuíto</title>
+    <title>Registros | Circuito</title>
 </head>
 <body>
     <header id="headerf">
-        <h1 class="h1f"><a class="ancla-navf ancla-h1f" href="index.php">Monitoreo Ultrasónico - Pro</a></h1>
+        <h1 class="h1f"><a class="ancla-navf ancla-h1f" href="index.html">Monitoreo Ultrasónico - Pro</a></h1>
         <nav class="links">
             <ul class="ulf">
                 <li class="lif"><a class="ancla-navf" href="index.html">INICIO</a></li>
                 <li class="lif"><a class="ancla-navf" href="objetivo.html">OBJETIVO</a></li>
-                <li class="lif"><a class="ancla-navf active" href="registros.php">REGISTROS</a></li>
+                <li class="lif"><a class="ancla-navf active" href="registros.html">REGISTROS</a></li>
                 <li class="lif"><a class="ancla-navf" href="grafica.html">GRÁFICA</a></li>
                 <li class="lif"><a class="ancla-navf" href="circuitos.html">CIRCUITO</a></li>
             </ul>
@@ -37,14 +45,43 @@
                 </li>
             </ul>
         </nav>
-        <nav class="mainf">
-            <ul class="ulf">
-                <li class="lif menu">
-                    <a class="desaparece ancla-navf fa-bars" href="#menu">MENÚ</a>
+    </header>
+
+    <!-- Menu -->
+    <section class="sectionf" id="menu">
+
+        <!-- Links -->
+        <section class="sectionf text-center">
+            <ul class="ulf links">
+                <li class="lif">
+                    <a class="ancla-navf" href="index.html">
+                        <h3 class="h3f">INICIO</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="objetivo.html">
+                        <h3 class="h3f">OBJETIVO</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="registros.html">
+                        <h3 class="h3f active">REGISTROS</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="grafica.html">
+                        <h3 class="h3f">GRÁFICA</h3>
+                    </a>
+                </li>
+                <li class="lif">
+                    <a class="ancla-navf" href="circuitos.html">
+                        <h3 class="h3f">CIRCUITO</h3>
+                    </a>
                 </li>
             </ul>
-        </nav>
-    </header>
+        </section>
+    </section>
+
     <div class="container">
         <h1 class="text-center mb-3">Registros Guardados</h1>
         <div class="row mt-5">
@@ -64,7 +101,7 @@
 
                             <tbody>
                                 <?php
-                                    foreach ($registros as $registro) {
+                                    foreach ($data as $registro) {
                                 ?>
 
                                 <tr>
@@ -83,7 +120,7 @@
                                     <td>
                                         <a class="text-white btn btn-danger" onclick="AlertaConfirmarEliminacion(<?php echo $registro['id']?>)"><i class="fas fa-trash"></i></a>
                                         <div class="form-check form-check-inline">
-                                            <input type="checkbox" name="eliminar-mult[]" value="<?php echo $registro['id']?>">
+                                            <input type="checkbox" name="eliminar[]" value="<?php echo $registro['id']?>">
                                         </div>
                                     </td>
                                 </tr>
@@ -93,6 +130,9 @@
                                 ?>
                             </tbody>
                         </table>
+                        <!-- <input type="text" name="prueba[]" value="1" class="pruebaArray"> -->
+                        <!-- <input type="text" name="prueba[]" value="2" class="pruebaArray"> -->
+                        <!-- <input type="text" name="prueba[]" value="3" class="pruebaArray"> -->
                         <div class="mt-5 mb-5 text-center">
                             <input class="btn btn-danger" type="submit" name="borrar" onclick="AlertaConfirmarEliminacionMultiple()" value="Eliminar registros seleccionados">
                         </div>                       
@@ -103,6 +143,11 @@
     </div>
 
 
+    <!-- Script NavBar -->
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/skel.min.js"></script>
+    <script src="assets/util.js"></script>
+    <script src="assets/main.js"></script>
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
